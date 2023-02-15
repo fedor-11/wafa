@@ -1,4 +1,4 @@
-./env/
-./wafa/wafa/_pycache_/
-./wafa/mapp/__pycache_/
-./wafa/mapp/migrations/_pycache_/
+env
+wafa/wafa/__pycache__
+wafa/mapp/__pycache__
+wafa/mapp/migrations/__pycache__
