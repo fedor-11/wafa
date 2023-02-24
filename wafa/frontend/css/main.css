@@ -28,6 +28,29 @@ body {
     width: 909px; /* total computed width = 222 x 3 + 226 */
 }
 
+#wifi_list .connected_wifi {
+    font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
+    text-shadow: 0 1px rgba(255,255,255,.8);        
+    background: #8ebeea;
+    border: 1px solid #fff;
+    border-radius: 30px;
+    color: #333;
+    padding: 20px;
+    width: 180px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
+    float: left;
+    position: relative;
+    margin-left: 5px;
+}
+
+#wifi_list .connected_wifi h3 {
+    font-size: 20px;
+    font-weight: normal;
+    padding: 20px;
+    margin: -20px -20px 50px -20px;
+    border-radius: 30px;
+    background-color: #8ebeea;
+}
+
 #wifi_list .wifi {
     font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
     text-shadow: 0 1px rgba(255,255,255,.8);        
@@ -44,7 +67,7 @@ body {
   
   /* --------------- */	
   
-#wifi_list h3 {
+#wifi_list .wifi h3 {
     font-size: 20px;
     font-weight: normal;
     padding: 20px;
