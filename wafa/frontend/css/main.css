@@ -1,0 +1,125 @@
+body {
+    background: grey;
+}
+
+#title {
+    height: 100px;
+}
+
+#title h1 {
+    margin: 0px;
+    text-align: center;
+    font-size: 75px;
+    background: -webkit-linear-gradient(rgb(237, 86, 86), rgb(145, 213, 137));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#title h1 img {
+    margin: 0px;
+    margin-right: 25px;
+    width: 100px;
+    height: 100px;
+}
+  
+#wifi_list {
+    margin: 35px auto;
+    text-align: center;
+    width: 909px; /* total computed width = 222 x 3 + 226 */
+}
+
+#wifi_list .wifi {
+    font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
+    text-shadow: 0 1px rgba(255,255,255,.8);        
+    background: #fff;      
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    color: #333;
+    padding: 20px;
+    width: 180px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
+    float: left;
+    position: relative;
+    margin-left: 5px;
+}
+  
+  /* --------------- */	
+  
+#wifi_list h3 {
+    font-size: 20px;
+    font-weight: normal;
+    padding: 20px;
+    margin: -20px -20px 50px -20px;
+    border-radius: 30px;
+    background-color: #eee;
+    background-image: -moz-linear-gradient(#fff,#eee);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));    
+    background-image: -webkit-linear-gradient(#fff, #eee);
+    background-image: -o-linear-gradient(#fff, #eee);
+    background-image: -ms-linear-gradient(#fff, #eee);
+    background-image: linear-gradient(#fff, #eee);
+}
+  
+#wifi_list h3 img {
+    display: block;
+    font: bold 25px/100px Georgia, Serif;
+    color: #777;
+    background: black;
+    border: 2px solid gray;
+    height: 100px;
+    width: 100px;
+    margin: 10px auto -65px;
+    border-radius: 100px;
+    box-shadow: 0 5px 20px #ddd inset, 0 3px 0 #999 inset;
+}
+  
+  /* --------------- */
+  
+#wifi_list ul {
+    margin: 20px 0 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+#wifi_list li {
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+}
+  
+  /* --------------- */
+      
+#wifi_list .analyze {
+    position: relative;
+    padding: 8px 20px;
+    margin: 20px 0 0 0;  
+    color: #fff;
+    font: bold 14px Arial, Helvetica;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;       
+    background-color: #72ce3f;
+    background-image: -moz-linear-gradient(#72ce3f, #62bc30);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#72ce3f), to(#62bc30));    
+    background-image: -webkit-linear-gradient(#72ce3f, #62bc30);
+    background-image: -o-linear-gradient(#72ce3f, #62bc30);
+    background-image: -ms-linear-gradient(#72ce3f, #62bc30);
+    background-image: linear-gradient(#72ce3f, #62bc30);
+    border-radius: 20px;     
+    text-shadow: 0 1px 0 rgba(0,0,0,.3);        
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .5), 0 2px 0 rgba(0, 0, 0, .7);
+}
+
+#wifi_list .analyze:hover {
+    background-color: #62bc30;
+    background-image: -moz-linear-gradient(#62bc30, #72ce3f);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#62bc30), to(#72ce3f));      
+    background-image: -webkit-linear-gradient(#62bc30, #72ce3f);
+    background-image: -o-linear-gradient(#62bc30, #72ce3f);
+    background-image: -ms-linear-gradient(#62bc30, #72ce3f);
+    background-image: linear-gradient(#62bc30, #72ce3f);
+}
+
+#wifi_list .analyze:active, #wifi_list .analyze:focus {
+    background: #62bc30;       
+    top: 2px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .7) inset; 
+}
