@@ -84,113 +84,9 @@ class Network:
         for network_name in self.network_names:
             self.bssids[network_name] = self.get_bssid(network_name)
 
-# 1.0
-'''def parse_from_command_line() -> dict:
-    # узнаём локализацию терминала пользователя
-    tmp = subprocess.run('chcp', capture_output=True, shell=True)
-    current_codepage = tmp.stdout.decode().strip().split()[-1]
-    # меняем локализацию терминала на 437 (английская раскаладка)
-    subprocess.run('chcp 437', shell=True)
-    # получаем все доступные сети через команду 'netsh wlan show network mode=Bssid'
-    result = subprocess.run(['netsh', 'wlan', 'show', 'network', 'mode=Bssid'], capture_output=True)
-    # возварщаем локализацию терминала в ту, которая была у пользователя
-    subprocess.run('chcp ' + str(current_codepage), shell=True)
-    # разбираем вывод команды 'netsh wlan show network mode=Bssid'
-    # декодируем, получаем строчку
-    output = result.stdout.decode('windows 1251')
-    output = output.split('\r\n')
-    # удаляем лишнии строчки в начале
-    output = output[4:]
-    # сюда всё будет складываться
-    data = dict()
-    # количество пробелов в начале предыдущей строки
-    # нужно для того чтобы понимать какая у нас сейчас глубина в словаре
-    amount_pred_spaces = -1
-    # путь в словаре
-    current_path = []
-    # если какой-то параметр пустой, то нужно пропускать строчки, которые под этим параметром
-    is_skip = False
-    # глубина строчки на которой нужно прекратить выкидывать строчки
-    should_stop_on = 0
-    
-    # перебираем всё строчке в выводе
-    for line in output:
-        # получаем количество пробелов в начале текущей строки
-        amount_current_spaces = 0
-        while (amount_current_spaces < len(line) and line[amount_current_spaces] == ' '):
-            amount_current_spaces += 1
-        # проверка на корректность данной строки
-        # проверка линии у ктоторых глубина > 9 нам не нужны
-        # а также если вся строка из пробелов нам не подходит
-        if (amount_current_spaces > 9 or amount_current_spaces == len(line)):
-            continue
-        
-        tp = ''
-        value = ''
-        line = line.strip()
-        ind = 0
-        # находим тип
-        while (line[ind] != ' '):
-            tp += line[ind]
-            ind += 1
-        # ищем начало значения
-        while (ind < len(line) and line[ind] != ':'):
-            ind += 1
-        # если нет :
-        if (ind == len(line)):
-            continue
-        # += 2 так как там ": " и потом начинает название
-        ind += 2
-        # получаем значение
-        while (ind < len(line)):
-            value += line[ind]
-            ind += 1
-        # проверка на то, что данную строчку нужно пропускать или нет
-        if (is_skip and amount_current_spaces != should_stop_on):
-            continue
-        else:
-            # если не нужно то заканчиваем пропускать
-            is_skip = False
-        # если значение пустое, то оно нам не подходит и надо начинать пропускать строчки до следующего значения
-        # на уровне с этим
-        if (value == ''):
-            is_skip = True
-            should_stop_on = amount_current_spaces
-            continue
-        
-        # теперь разбор случаем на глубину значения
-        if (amount_current_spaces == 0): # это просто нзвание сети
-            data[value] = dict()
-            current_path = [value]
-        elif (amount_current_spaces == 4): # первичные параметры внутри сети
-            data[current_path[0]][tp] = dict()
-            data[current_path[0]][tp][value] = dict()
-            if (amount_pred_spaces == 4):
-                current_path[1] = tp
-                current_path[2] = value
-            elif (amount_pred_spaces == 0):
-                current_path.append(tp)
-                current_path.append(value)
-        elif (amount_current_spaces == 9): # параметры внутри BSSID
-            data[current_path[0]][current_path[1]][current_path[2]][tp] = value
-        # перезаписываем количество пробелов в предыдущей строке
-        amount_pred_spaces = amount_current_spaces
-    return data'''
 
-# 1.1
 def parse_from_command_line() -> dict:
-    # узнаём локализацию терминала пользователя
-    tmp = subprocess.run('chcp', capture_output=True, shell=True)
-    current_codepage = tmp.stdout.decode().strip().split()[-1]
-    # меняем локализацию терминала на 437 (английская раскаладка)
-    subprocess.run('chcp 437', shell=True)
-    # получаем все доступные сети через команду 'netsh wlan show network mode=Bssid'
-    result = subprocess.run(['netsh', 'wlan', 'show', 'network', 'mode=Bssid'], capture_output=True)
-    # возварщаем локализацию терминала в ту, которая была у пользователя
-    subprocess.run('chcp ' + str(current_codepage), shell=True)
-    # разбираем вывод команды 'netsh wlan show network mode=Bssid'
-    # декодируем, получаем строчку
-    output = result.stdout.decode('windows 1251')
+    output = '\r\nInterface name : Wi-Fi \r\nThere are 11 networks currently visible. \r\n\r\nSSID 1 : home36\r\n    Network type            : Infrastructure\r\n    Authentication          : WPA2-Personal\r\n    Encryption              : CCMP \r\n    BSSID 1                 : f8:f0:82:5d:b7:a2\r\n         Signal             : 24%  \r\n         Radio type         : 802.11n\r\n         Band               : 2.4 GHz\r\n         Channel            : 6 \r\n         Bss Load:\r\n             Connected Stations:         1\r\n             Channel Utilization:        8 (3 %)\r\n             Medium Available Capacity:  31250 (1000000 us/s)\r\n         Basic rates (Mbps) : 6 12 24\r\n         Other rates (Mbps) : 9 18 36 48 54\r\n\r\nSSID 2 : MX47_5G\r\n    Network type            : Infrastructure\r\n    Authentication          : WPA2-Personal\r\n    Encryption              : CCMP \r\n    BSSID 1                 : 64:64:4a:36:7f:57\r\n         Signal             : 67%  \r\n         Radio type         : 802.11ac\r\n         Band               : 5 GHz  \r\n         Channel            : 149 \r\n         Bss Load:\r\n             Connected Stations:         1\r\n             Channel Utilization:        23 (9 %)\r\n             Medium Available Capacity:  31250 (1000000 us/s)\r\n         Basic rates (Mbps) : 6 12 24\r\n         Other rates (Mbps) : 9 18 36 48 54\r\n    BSSID 2                 : 64:64:4a:36:7f:56\r\n         Signal             : 83%  \r\n         Radio type         : 802.11n\r\n         Band               : 2.4 GHz\r\n         Channel            : 11 \r\n         Bss Load:\r\n             Connected Stations:         1\r\n             Channel Utilization:        0 (0 %)\r\n             Medium Available Capacity:  31250 (1000000 us/s)\r\n         Basic rates (Mbps) : 1 2 5.5 11\r\n         Other rates (Mbps) : 6 9 12 18 24 36 48 54\r\n\r\nSSID 3 : KV-70\r\n    Network type            : Infrastructure\r\n    Authentication          : WPA2-Personal\r\n    Encryption              : CCMP \r\n    BSSID 1                 : f4:23:9c:23:2c:e8\r\n         Signal             : 38%  \r\n         Radio type         : 802.11n\r\n         Band               : 2.4 GHz\r\n         Channel            : 10 \r\n         Bss Load:\r\n             Connected Stations:         0\r\n             Channel Utilization:        30 (11 %)\r\n             Medium Available Capacity:  31250 (1000000 us/s)\r\n         Basic rates (Mbps) : 1 2 5.5 11\r\n         Other rates (Mbps) : 6 9 12 18 24 36 48 54\r\n\r\nSSID 4 : MAX\r\n    Network type            : Infrastructure\r\n    Authentication          : WPA2-Personal\r\n    Encryption              : CCMP \r\n    BSSID 1                 : 38:2c:4a:65:f0:30\r\n         Signal             : 65%  \r\n         Radio type         : 802.11g\r\n         Band               : 2.4 GHz\r\n         Channel            : 3 \r\n         Basic rates (Mbps) : 1 2 5.5 11\r\n         Other rates (Mbps) : 6 9 12 18 24 36 48 54\r\n\r\nSSID 5 : kv-35\r\n    Network type            : Infrastructure\r\n    Authentication          : WPA2-Personal\r\n    Encryption              : CCMP \r\n    BSSID 1                 : 24:d3:f2:98:68:4d\r\n         Signal             : 53%  \r\n         Radio type         : 802.11n\r\n         Band               : 2.4 GHz\r\n         Channel            : 1 \r\n         Basic rates (Mbps) : 1 2 5.5 11\r\n         Other rates (Mbps) : 6 9 12 18 24 36 48 54\r\n\r\nSSID 6 : Maxlar\r\n    Network type            : Infrastructure\r\n    Authentication          : WPA2-Personal\r\n    Encryption              : CCMP \r\n    BSSID 1                 : 24:d3:f2:bc:fb:a9\r\n         Signal             : 86%  \r\n         Radio type         : 802.11n\r\n         Band               : 2.4 GHz\r\n         Channel            : 9 \r\n         Basic rates (Mbps) : 1 2 5.5 11\r\n         Other rates (Mbps) : 6 9 12 18 24 36 48 54\r\n\r\nSSID 7 : arta\r\n    Network type            : Infrastructure\r\n    Authentication          : WPA2-Personal\r\n    Encryption              : CCMP \r\n    BSSID 1                 : 98:de:d0:6e:7e:84\r\n         Signal             : 50%  \r\n         Radio type         : 802.11n\r\n         Band               : 2.4 GHz\r\n         Channel            : 7 \r\n         Basic rates (Mbps) : 1 2 5.5 11\r\n         Other rates (Mbps) : 6 9 12 18 24 36 48 54\r\n\r\nSSID 8 : MaxnetX47_5  Channel Utilization:        0 (0 %)\r\n             Medium Available Capacity:  31250 (1000000 us/s)\r\n         Basic rates (Mbps) : 1 2 5.5 11\r\n         Other rates (Mbps) : 6 9 12 18 24 36 48 54\r\n\r\n'
     output = output.split('\r\n')
     # удаляем лишнии строчки в начале
     output = output[4:]
@@ -277,18 +173,3 @@ if __name__ == "__main__":
     #network = Network()
     #print(network.bssids)
     print(parse_from_command_line())
-    '''while (True):
-        time.sleep(60)
-        try:
-            parse_from_command_line()
-        except:
-            print("Error")
-            tmp = subprocess.run('chcp', capture_output=True, shell=True)
-            current_codepage = tmp.stdout.decode().strip().split()[-1]
-            subprocess.run('chcp 437', shell=True)
-            result = subprocess.run(['netsh', 'wlan', 'show', 'network', 'mode=Bssid'], capture_output=True)
-            subprocess.run('chcp ' + str(current_codepage), shell=True)
-            output = result.stdout
-            print(output)
-            print("\n\n\n\n")
-            break'''
