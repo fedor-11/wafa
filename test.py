@@ -1,7 +1,8 @@
 import subprocess
 
+# класс Networks содержит всю информацию о доступных сетях
 class Network:
-    def __init__(self) -> None:
+    def __init__(self):
         self.reload()
 
     def get_network_name(self, start_ind):
@@ -26,9 +27,8 @@ class Network:
             if (ind == -1):
                 break
             cur = self.get_network_name(ind + 1)
-            if (cur[0] == ''):
-                cur[0] = "Untitled"
-            names.append(cur[0])
+            if (cur[0] != ''):
+                names.append(cur[0])
         return names
     
     def get_bssid_by_index(self, start_ind):
@@ -58,11 +58,27 @@ class Network:
             ind_bssid = self.output.find("BSSID ", cur[1], next_network_ind_in_output)
         return bssids
 
+    def get_channel(self, network_name):
+        network_ind_in_output = self.output.find(' ' + network_name + '\r')
+           
+    # делает полную перезапись всех доступных сетей
     def reload(self):
+        # узнаём локализацию терминала пользователя
+        tmp = subprocess.run('chcp', capture_output=True, shell=True)
+        current_codepage = tmp.stdout.decode().strip().split()[-1]
+        # меняем локализацию терминала на 437 (английская раскаладка)
         subprocess.run('chcp 437', shell=True)
+        # получаем все доступные сети через команду 'netsh wlan show network mode=Bssid'
         self.result = subprocess.run(['netsh', 'wlan', 'show', 'network', 'mode=Bssid'], capture_output=True)
+        # возварщаем локализацию терминала в ту, которая была у пользователя
+        subprocess.run('chcp ' + str(current_codepage), shell=True)
+        
+        # разбираем вывод команды 'netsh wlan show network mode=Bssid'
+        # декодируем, получаем строчку
         self.output = self.result.stdout.decode('windows 1251')
+        # получаем список SSID всех доступных сетей
         self.network_names = self.get_all_network_name()
+        # получаем BSSID всех сетей
         self.bssids = dict()
         for network_name in self.network_names:
             self.bssids[network_name] = self.get_bssid(network_name)
