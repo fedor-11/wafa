@@ -56,8 +56,10 @@ ROOT_URLCONF = 'wafa.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [
+            BASE_DIR / "frontend"
+        ],
+        'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -71,6 +73,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wafa.wsgi.application'
 
+STATICFILES_DIRS = [
+    BASE_DIR / "frontend"
+]
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -117,7 +122,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'frontend/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

@@ -7,6 +7,14 @@ def parse_from_command_line() -> dict:
     current_codepage = tmp.stdout.decode().strip().split()[-1]
     # меняем локализацию терминала на 437 (английская раскаладка)
     subprocess.run('chcp 437', shell=True)
+    # получаем сеть к которой сейчас подключены
+    output = subprocess.check_output(['netsh', 'wlan', 'show', 'interface'])
+    output_str = output.decode('windows 1251')
+    ssid_start = output_str.find('SSID')
+    ssid_connected = "Untiteld11"
+    if (ssid_start != -1):
+        ssid_end = output_str.find('\n', ssid_start)
+        ssid_connected = output_str[ssid_start: ssid_end].split(':')[1].strip()
     # получаем все доступные сети через команду 'netsh wlan show network mode=Bssid'
     result = subprocess.run(['netsh', 'wlan', 'show', 'network', 'mode=Bssid'], capture_output=True)
     # возварщаем локализацию терминала в ту, которая была у пользователя
@@ -94,9 +102,11 @@ def parse_from_command_line() -> dict:
         elif (amount_current_spaces == 9): # параметры внутри BSSID
             data[current_path[0]][current_path[1]][current_path[2]][tp] = value
         # перезаписываем количество пробелов в предыдущей строке
-
+    nw_data = dict()
+    nw_data['all_networks'] = data
+    nw_data['connected'] = ssid_connected
     # возвращаем словарь
-    return data
+    return nw_data
 
 if __name__ == "__main__":
     print(parse_from_command_line())

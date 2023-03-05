@@ -172,4 +172,18 @@ def parse_from_command_line() -> dict:
 if __name__ == "__main__":
     #network = Network()
     #print(network.bssids)
-    print(parse_from_command_line())
+    while (True):
+        time.sleep(60)
+        try:
+            parse_from_command_line()
+        except:
+            print("Error")
+            tmp = subprocess.run('chcp', capture_output=True, shell=True)
+            current_codepage = tmp.stdout.decode().strip().split()[-1]
+            subprocess.run('chcp 437', shell=True)
+            result = subprocess.run(['netsh', 'wlan', 'show', 'network', 'mode=Bssid'], capture_output=True)
+            subprocess.run('chcp ' + str(current_codepage), shell=True)
+            output = result.stdout
+            print(output)
+            print("\n\n\n\n")
+            break

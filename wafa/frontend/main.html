@@ -1,56 +1,42 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="{% static "css/main.css" %}">
 <head>
     <meta charset="UTF-8">
     <title>Frontend</title>
 </head>
 <body>
     <div id="title">
-        <h1><img src="img/kakish.png"></img>Wafa</h1>
+        <h1><img src="{% static "img/kakish.png" %}"></img>Wafa</h1>
     </div>
     <div id="wifi_list" class="clear">
-        <div class="connected_wifi">
-            <h3>wifi_name<img src="img/weak.png"></img></h3>
-            <a class="analyze" href="wifi.html">Analyze</a>         
-            <ul>
-                <li><b>Info</b> about this wifi</li>
-                <li><b>Info</b> about this wifi</li>
-                <li><b>Info</b> about this wifi</li>
-                <li><b>Info</b> about this wifi</li>		
-            </ul> 
-        </div>
-        <div class="wifi">
-            <h3>wifi_name<img src="img/fair.png"></img></h3>
-            <a class="analyze" href="wifi.html">Analyze</a>         
-            <ul>
-                <li><b>Info</b> about this wifi</li>
-                <li><b>Info</b> about this wifi</li>
-                <li><b>Info</b> about this wifi</li>
-                <li><b>Info</b> about this wifi</li>		
-            </ul> 
-        </div>
-        <div class="wifi">
-            <h3>wifi_name<img src="img/good.png"></img></h3>
-            <a class="analyze" href="wifi.html">Analyze</a>         
-            <ul>
-                <li><b>Info</b> about this wifi</li>
-                <li><b>Info</b> about this wifi</li>
-                <li><b>Info</b> about this wifi</li>
-                <li><b>Info</b> about this wifi</li>		
-            </ul> 
-        </div>
-        <div class="wifi">
-            <h3>wifi_name<img src="img/perfect.png"></img></h3>
-            <a class="analyze" href="wifi.html">Analyze</a>         
-            <ul>
-                <li><b>Info</b> about this wifi</li>
-                <li><b>Info</b> about this wifi</li>
-                <li><b>Info</b> about this wifi</li>
-                <li><b>Info</b> about this wifi</li>		
-            </ul> 
-        </div>
-    </div>
+        {% for wifi in data %}
+            {% if wifi.is_connected %}
+            <div class="connected_wifi">
+            {% else %}
+            <div class="wifi">
+            {% endif %}
+                {% if wifi.max_signal > 70 %}
+                <h3>{{ wifi.name }}<img src="{% static "img/perfect.png" %}"></img></h3>
+                {% elif wifi.max_signal > 50 %}
+                <h3>{{ wifi.name }}<img src="{% static "img/good.png" %}"></img></h3>
+                {% elif wifi.max_signal > 30 %}
+                <h3>{{ wifi.name }}<img src="{% static "img/fair.png" %}"></img></h3>
+                {% else %}
+                <h3>{{ wifi.name }}<img src="{% static "img/weak.png" %}"></img></h3>
+                {% endif %}
+                <a class="analyze" href="wifi.html">Analyze</a>         
+                <ul>
+                    <li><b>Network Type</b> {{wifi.network}}</li>
+                    <li><b>Authentication</b> {{wifi.authentication}}</li>
+                    <li><b>Encryption</b> {{wifi.encryption}}</li>
+                    <li><b>Max Signal</b> {{wifi.max_signal}}</li>
+                    <li><b>Info</b> about this wifi</li>		
+                </ul> 
+            </div>
+        {% endfor %}
+    <a class="analyze" href="reload/">Reload</a>
     <script src="js/script.js"></script>
 </body>
 </html>
