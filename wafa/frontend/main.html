@@ -26,7 +26,7 @@
                 {% else %}
                 <h3>{{ wifi.name }}<img src="{% static "img/weak.png" %}"></img></h3>
                 {% endif %}
-                <a class="analyze" href="wifi.html">Analyze</a>         
+                <a class="analyze" href="/{{wifi.name}}">Analyze</a>         
                 <ul>
                     <li><b>Network Type</b> {{wifi.network}}</li>
                     <li><b>Authentication</b> {{wifi.authentication}}</li>

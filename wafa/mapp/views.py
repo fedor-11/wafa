@@ -7,7 +7,7 @@ from .models import SSID, BSSID
 
 def reload(request):
     data = backend.parse_from_command_line()
-    print(data)
+    print()
     BSSID.objects.all().delete()
     SSID.objects.all().delete()
     
@@ -30,3 +30,7 @@ def reload(request):
 def index(request):
     data = SSID.objects.all()
     return render(request, "main.html", {"data": data})
+
+def wifi_details(request, wifi_name):
+    print(wifi_name)
+    return render(request, "wifi.html", {"wf" : wifi_name})
