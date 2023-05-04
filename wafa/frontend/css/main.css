@@ -1,15 +1,16 @@
 body {
-    background: -webkit-linear-gradient(rgb(237, 86, 86), rgb(145, 213, 137));
+    background: -webkit-linear-gradient(rgb(240, 107, 107), rgb(145, 213, 137));
 }
 
 #main {
     display: flex;
     flex-direction: row;
     padding: 5px;
-    width: 1013px;
+    width: 50%;
     height: 80px;
     margin-top: 25px;
     margin-bottom: 0px;
+    margin: auto;
     align-items: center;
 }
 
@@ -55,7 +56,7 @@ body {
 
 #main img {
     margin: 0px;
-    margin-left: 425px;
+    /* margin-left: 425px; */
     width: 100px;
     height: 100px;
 }
@@ -95,7 +96,7 @@ body {
 #wifi_list .connected_wifi {
     font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
     text-shadow: 0 1px rgba(255,255,255,.8);        
-    background: #bbd4e4;
+    background: #7de4797c;
     border: 1px solid rgb(116, 203, 214);
     border-radius: 30px;
     color: #333;
@@ -113,13 +114,13 @@ body {
     padding: 20px;
     margin: -20px -20px 50px -20px;
     border-radius: 30px;
-    background-color: #a4cae2;
+    /* background-color: #40e74080; */
 }
 
 #wifi_list .wifi {
     font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
     text-shadow: 0 1px rgba(255,255,255,.8);        
-    background: #fff;      
+    background: rgba(255, 255, 255, 0.5);      
     border: 1px solid #ddd;
     border-radius: 30px;
     color: #333;
@@ -139,13 +140,13 @@ body {
     padding: 20px;
     margin: -20px -20px 50px -20px;
     border-radius: 30px;
-    background-color: #eee;
-    background-image: -moz-linear-gradient(#fff,#eee);
+    /* background-color: rgba(209, 204, 204, 0.5); */
+    /* background-image: -moz-linear-gradient(#fff,#eee);
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));    
     background-image: -webkit-linear-gradient(#fff, #eee);
     background-image: -o-linear-gradient(#fff, #eee);
     background-image: -ms-linear-gradient(#fff, #eee);
-    background-image: linear-gradient(#fff, #eee);
+    background-image: linear-gradient(#fff, #eee); */
 }
   
 #wifi_list h3 img {
