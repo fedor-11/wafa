@@ -2,3 +2,4 @@ env
 wafa/wafa/__pycache__
 wafa/mapp/__pycache__
 wafa/mapp/migrations/__pycache__
+wafa/db.sqlite3
