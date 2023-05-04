@@ -1,6 +1,5 @@
 body {
-    background: green;
-    /* background: -webkit-linear-gradient(rgb(237, 86, 86), rgb(145, 213, 137)); */
+    background: -webkit-linear-gradient(rgb(237, 86, 86), rgb(145, 213, 137));
 }
 
 #main {
@@ -49,7 +48,7 @@ body {
     text-align: center;
     font-size: 75px;
     width: 200px;
-    background: -webkit-linear-gradient(rgb(237, 86, 86), rgb(145, 213, 137));
+    background: -webkit-linear-gradient(rgb(54, 180, 230), rgb(145, 213, 137));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
