@@ -2,7 +2,7 @@ body {
     background: -webkit-linear-gradient(rgb(237, 86, 86), rgb(145, 213, 137));
 }
 
-#main {
+/* #main {
     display: flex;
     flex-direction: row;
     padding: 5px;
@@ -15,7 +15,7 @@ body {
 
 #main div {
     margin: 10px 20px;
-}
+} */
 
 #main .reload {
     margin-top: 45px;
