@@ -3,8 +3,8 @@ import subprocess
 # 1.1
 def parse_from_command_line() -> dict:
     # узнаём локализацию терминала пользователя
-    tmp = subprocess.run('chcp', capture_output=True, shell=True)
-    current_codepage = tmp.stdout.decode().strip().split()[-1]
+    # tmp = subprocess.run('chcp', capture_output=True, shell=True)
+    # current_codepage = tmp.stdout.decode().strip().split()[-1]
     # меняем локализацию терминала на 437 (английская раскаладка)
     subprocess.run('chcp 437', shell=True)
     # получаем сеть к которой сейчас подключены
@@ -18,7 +18,7 @@ def parse_from_command_line() -> dict:
     # получаем все доступные сети через команду 'netsh wlan show network mode=Bssid'
     result = subprocess.run(['netsh', 'wlan', 'show', 'network', 'mode=Bssid'], capture_output=True)
     # возварщаем локализацию терминала в ту, которая была у пользователя
-    subprocess.run('chcp ' + str(current_codepage), shell=True)
+    # subprocess.run('chcp ' + str(current_codepage), shell=True)
     # разбираем вывод команды 'netsh wlan show network mode=Bssid'
     # декодируем, получаем строчку
     output = result.stdout.decode('windows 1251')

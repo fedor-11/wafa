@@ -1,25 +1,89 @@
 body {
-    background: grey;
+    background: -webkit-linear-gradient(rgb(237, 86, 86), rgb(145, 213, 137));
 }
 
-#title {
-    height: 100px;
+#main {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    width: 1013px;
+    height: 80px;
+    margin-top: 25px;
+    margin-bottom: 0px;
+    align-items: center;
 }
 
-#title h1 {
-    margin: 0px;
+#main div {
+    margin: 10px 20px;
+}
+
+#main .reload {
+    margin-top: 45px;
+    margin-left: 5px;
+    background-color: #c2fbd7;
+    border-radius: 100px;
+    box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+    color: green;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "JetBrains Mono",monospace;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 18px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+  
+#main .reload:hover {
+    box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+}
+
+#main h1 {
+    padding-top: 35px;
     text-align: center;
     font-size: 75px;
+    width: 200px;
     background: -webkit-linear-gradient(rgb(237, 86, 86), rgb(145, 213, 137));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-#title h1 img {
+#main img {
     margin: 0px;
-    margin-right: 25px;
+    margin-left: 425px;
     width: 100px;
     height: 100px;
+}
+
+/* CSS */
+#wifi_list .reload {
+  background-color: #c2fbd7;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  color: green;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "JetBrains Mono",monospace;
+  padding: 7px 20px;
+  text-align: center;
+  margin-top: 10px;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#wifi_list .reload:hover {
+  box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
 }
   
 #wifi_list {
@@ -31,8 +95,8 @@ body {
 #wifi_list .connected_wifi {
     font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
     text-shadow: 0 1px rgba(255,255,255,.8);        
-    background: #8ebeea;
-    border: 1px solid #fff;
+    background: #bbd4e4;
+    border: 1px solid rgb(116, 203, 214);
     border-radius: 30px;
     color: #333;
     padding: 20px;
@@ -40,6 +104,7 @@ body {
     float: left;
     position: relative;
     margin-left: 5px;
+    margin-bottom: 5px;
 }
 
 #wifi_list .connected_wifi h3 {
@@ -48,7 +113,7 @@ body {
     padding: 20px;
     margin: -20px -20px 50px -20px;
     border-radius: 30px;
-    background-color: #8ebeea;
+    background-color: #a4cae2;
 }
 
 #wifi_list .wifi {
@@ -63,6 +128,7 @@ body {
     float: left;
     position: relative;
     margin-left: 5px;
+    margin-bottom: 5px;
 }
   
   /* --------------- */	
@@ -106,43 +172,4 @@ body {
 #wifi_list li {
     border-top: 1px solid #ddd;
     padding: 10px 0;
-}
-  
-  /* --------------- */
-      
-#wifi_list .analyze {
-    position: relative;
-    padding: 8px 20px;
-    margin: 20px 0 0 0;  
-    color: #fff;
-    font: bold 14px Arial, Helvetica;
-    text-transform: uppercase;
-    text-decoration: none;
-    display: inline-block;       
-    background-color: #72ce3f;
-    background-image: -moz-linear-gradient(#72ce3f, #62bc30);
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#72ce3f), to(#62bc30));    
-    background-image: -webkit-linear-gradient(#72ce3f, #62bc30);
-    background-image: -o-linear-gradient(#72ce3f, #62bc30);
-    background-image: -ms-linear-gradient(#72ce3f, #62bc30);
-    background-image: linear-gradient(#72ce3f, #62bc30);
-    border-radius: 20px;     
-    text-shadow: 0 1px 0 rgba(0,0,0,.3);        
-    box-shadow: 0 1px 0 rgba(255, 255, 255, .5), 0 2px 0 rgba(0, 0, 0, .7);
-}
-
-#wifi_list .analyze:hover {
-    background-color: #62bc30;
-    background-image: -moz-linear-gradient(#62bc30, #72ce3f);
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#62bc30), to(#72ce3f));      
-    background-image: -webkit-linear-gradient(#62bc30, #72ce3f);
-    background-image: -o-linear-gradient(#62bc30, #72ce3f);
-    background-image: -ms-linear-gradient(#62bc30, #72ce3f);
-    background-image: linear-gradient(#62bc30, #72ce3f);
-}
-
-#wifi_list .analyze:active, #wifi_list .analyze:focus {
-    background: #62bc30;       
-    top: 2px;
-    box-shadow: 0 0 3px rgba(0, 0, 0, .7) inset; 
 }

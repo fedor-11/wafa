@@ -7,8 +7,10 @@
     <title>Frontend</title>
 </head>
 <body>
-    <div id="title">
-        <h1><img src="{% static "img/kakish.png" %}"></img>Wafa</h1>
+    <div id="main">
+        <div><img src="{% static "img/kakish.png" %}"></img></div>
+        <div><h1>Wafa</h1></div>
+        <div><a class="reload" href="reload/">Reload</a></div>
     </div>
     <div id="wifi_list" class="clear">
         {% for wifi in data %}
@@ -26,7 +28,7 @@
                 {% else %}
                 <h3>{{ wifi.name }}<img src="{% static "img/weak.png" %}"></img></h3>
                 {% endif %}
-                <a class="analyze" href="/{{wifi.name}}">Analyze</a>         
+                <a href="/{{wifi.name}}"><button class="reload" role="button">Analyze</button></a>         
                 <ul>
                     <li><b>Network Type</b> {{wifi.network}}</li>
                     <li><b>Authentication</b> {{wifi.authentication}}</li>
@@ -36,7 +38,6 @@
                 </ul> 
             </div>
         {% endfor %}
-    <a class="analyze" href="reload/">Reload</a>
     <script src="js/script.js"></script>
 </body>
 </html>
