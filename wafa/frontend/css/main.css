@@ -84,7 +84,7 @@ body {
 
 #wifi_list .reload:hover {
   box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
-  transform: scale(1.05) rotate(-1deg);
+  transform: scale(1.3) rotate(-5deg);
 }
   
 #wifi_list {
@@ -97,11 +97,11 @@ body {
     font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
     text-shadow: 0 1px rgba(255,255,255,.8);        
     background: rgba(255, 255, 255, 0.5);
-    border: 2px solid rgb(140, 240, 145);
+    border: 4px solid rgb(0, 255, 200);
     border-radius: 30px;
     color: #333;
     padding: 20px;
-    width: 180px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
+    width: 183px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
     float: left;
     position: relative;
     margin-left: 5px;
@@ -125,7 +125,7 @@ body {
     border-radius: 30px;
     color: #333;
     padding: 20px;
-    width: 180px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
+    width: 183px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
     float: left;
     position: relative;
     margin-left: 5px;
