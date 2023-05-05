@@ -100,8 +100,8 @@ body {
     border: 4px solid rgb(0, 255, 200);
     border-radius: 30px;
     color: #333;
-    padding: 20px;
-    width: 183px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
+    padding: 17px;
+    width: 180px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
     float: left;
     position: relative;
     margin-left: 5px;
@@ -125,7 +125,7 @@ body {
     border-radius: 30px;
     color: #333;
     padding: 20px;
-    width: 183px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
+    width: 180px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */
     float: left;
     position: relative;
     margin-left: 5px;
