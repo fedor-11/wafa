@@ -62,6 +62,11 @@ body {
     height: 100px;
 }
 
+#main img:hover {
+    transform: rotate(-107deg);
+    transition-duration: 500ms;
+}
+
 /* CSS */
 #wifi_list .reload {
     background-color: #c2fbd7;
@@ -131,6 +136,12 @@ body {
     position: relative;
     margin-left: 5px;
     margin-bottom: 5px;
+    touch-action: manipulation;
+}
+
+#wifi_list .wifi:hover {
+    transform: scale(1.03);
+    /*transition-duration: 2000ms;*/
 }
   
   /* --------------- */	
