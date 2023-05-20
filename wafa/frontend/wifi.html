@@ -1,11 +1,42 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-<!--<link rel="stylesheet" href="css/wifi.css">-->
+<link rel="stylesheet" href="{% static "css/wifi.css" %}">
 <head>
     <meta charset="UTF-8">
     <title>FFF</title>
 </head>
 <body>
-    <h1>{{ wf }}</h1>
+    <h1 class="wifi">{{ wf }}</h1>
+    <div class="chart">
+        {% for device in devices %}
+            <div class="bar" style="--bar-height: {{device.percent}}%;">
+                <div class="section" style="--section-value: 20;" data-value="20"></div>
+                <div class="label">{{device.IP}}</div>
+            </div>
+        {% endfor %}
+        <div class="bar" style="--bar-height: 10%;">
+            <div class="section" style="--section-value: 20;" data-value="20"></div>
+            <div class="label">1</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="table">
+            <div class="table-header">
+                <div class="header__item"><div class="filter__link filter__link--number">Name</div></div>
+                <div class="header__item"><div class="filter__link filter__link--number">Size</div></div>
+                <div class="header__item"><div class="filter__link filter__link--number">Percentage</div></div>
+            </div>
+            <div class="table-content">
+                {% for device in devices %}
+                    <div class="table-row">
+                        <div class="table-data">{{device.IP}}</div>
+                        <div class="table-data">{{device.data_size}} байт</div>
+                        <div class="table-data">{{device.percent}}%</div>
+                    </div>
+                {% endfor %}
+            </div>	
+        </div>
+    </div>
 </body>
 </html>

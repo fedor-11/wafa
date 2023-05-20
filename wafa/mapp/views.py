@@ -31,14 +31,19 @@ def index(request):
     data = SSID.objects.all()
     return render(request, "main.html", {"data": data})
 
-def wifi_details_do(request, wifi_name):
+def wifi_details(request, wifi_name):
     ssid = SSID.objects.get(name=wifi_name)
     if (ssid.is_connected):
         st = backend.get_devices()
         all_data = 0
         for ip, size in st.items():
-            new_device = Devices(IP=ip, data_size=size, SSID=ssid)
-            new_device.save()
-            
             all_data += size
-        return render(request, "wifi.html", {"wf" : wifi_name, "devices" : st, "all_size": all_data})
+        Devices.objects.all().delete()
+        for ip, size in st.items():
+            new_device = Devices(IP=ip, data_size=size, percent=(size * 100) // (all_data + 1), SSID=ssid)
+            new_device.save()
+        devices = Devices.objects.all()
+        print(devices)
+        return render(request, "wifi.html", {"wf" : wifi_name, "devices" : devices, "all_size": all_data, "is_connected" : True})
+    else:
+        return render(request, "wifi.html", {"wf" : wifi_name, "devices" : {}, "all_size": 0, "is_connected" : False})

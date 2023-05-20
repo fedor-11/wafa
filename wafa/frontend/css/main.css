@@ -126,7 +126,7 @@ body {
 #wifi_list .wifi {
     font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
     text-shadow: 0 1px rgba(255,255,255,.8);        
-    background: rgba(255, 255, 255, 0.35);      
+    background: rgba(255, 255, 255, 0.35);
     border: 1px solid #dddddd73;
     border-radius: 30px;
     color: #333;
