@@ -1,4 +1,5 @@
 import subprocess
+from scapy.all import *
 
 # 1.1
 def parse_from_command_line() -> dict:
@@ -108,5 +109,28 @@ def parse_from_command_line() -> dict:
     # возвращаем словарь
     return nw_data
 
+st = dict()
+
+def packet_handler(packet):
+    # Извлекаем информацию о источнике, получателе и размере пакета
+    if (TCP not in packet) or (IP not in packet):
+        return
+    src_ip = packet[IP].src
+    dst_ip = packet[IP].dst
+    size = len(packet)
+
+    # Выводим информацию в консоль
+    # print(f"Отправитель: {src_ip} | Получатель: {dst_ip} | Размер: {size} байт")
+    # print(classify_device(packet))
+    if (src_ip not in st.keys()):
+        st[src_ip] = size
+    else:
+        st[src_ip] += size
+        
+def get_devices():
+    st.clear()
+    sniff(iface="Wi-Fi", prn=packet_handler, timeout=5)
+    return st
+
 if __name__ == "__main__":
-    print(parse_from_command_line())
+    get_devices()

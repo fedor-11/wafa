@@ -2,12 +2,12 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from . import backend
 
-from .models import SSID, BSSID
+from .models import SSID, BSSID, Devices
 
 
 def reload(request):
     data = backend.parse_from_command_line()
-    print()
+    print(data)
     BSSID.objects.all().delete()
     SSID.objects.all().delete()
     
@@ -31,6 +31,14 @@ def index(request):
     data = SSID.objects.all()
     return render(request, "main.html", {"data": data})
 
-def wifi_details(request, wifi_name):
-    print(wifi_name)
-    return render(request, "wifi.html", {"wf" : wifi_name})
+def wifi_details_do(request, wifi_name):
+    ssid = SSID.objects.get(name=wifi_name)
+    if (ssid.is_connected):
+        st = backend.get_devices()
+        all_data = 0
+        for ip, size in st.items():
+            new_device = Devices(IP=ip, data_size=size, SSID=ssid)
+            new_device.save()
+            
+            all_data += size
+        return render(request, "wifi.html", {"wf" : wifi_name, "devices" : st, "all_size": all_data})

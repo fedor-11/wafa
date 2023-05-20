@@ -25,3 +25,11 @@ class BSSID(models.Model):
     
     def __str__(self):
         return self.SSID.name + self.BSSID
+    
+class Devices(models.Model):
+    IP = models.CharField(max_length=100)
+    data_size = models.IntegerField()
+    SSID = models.ForeignKey(SSID, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.IP
